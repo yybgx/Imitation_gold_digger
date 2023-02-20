@@ -4,14 +4,15 @@
         <span>最新</span>
         <hr/>
     </div>
-    <div class="item"  v-for="news in newslist" :key="o" v-on:click="todeatil(news.news_id)">
+    <div class="item"  v-for="(news,index) in newslist" :key="index" v-on:click="todeatil(news.news_id)">
           <!-- <img src="~/assets/images/头像 男孩.svg" class="item-img"> -->
-          <div class="item-text"><h4>{{ news.title}}</h4></div>
         <div class="item-info"> 
-          <span>新闻Id:{{news.news_id}}</span>
-          <span>类别Id:{{news.category_id}}</span>
-          <span>更新时间:{{news.update_time}}</span>
+          <span>{{news.news_id}}</span>
+          <span>{{news.update_time}}</span>
+          <span>{{news.category_id}}</span>
         </div>
+        <div class="item-text"><h4>{{ news.title}}</h4></div>
+
       </div>
     </div>
   </template>
@@ -23,10 +24,22 @@ import Cookie from 'js-cookie';
   return {
        newslist: [
       {
-        news_id:'',
-        title:'',
-        category_id:'',
-        update_time:''
+        news_id:'lemonwater',
+        title:'5年前端,我学会接受自己的平凡',
+        category_id:'前端',
+        update_time:'5月前'
+      },
+      {
+        news_id:'TF男孩',
+        title:'为什么大家都看重学历?',
+        category_id:'程序员 午夜话题',
+        update_time:'2月前'
+      },
+      {
+        news_id:'阿苟',
+        title:'22年连续跳槽3家',
+        category_id:'前端 面试',
+        update_time:'5月前'
       }
     ],
     categorylist:[1]
@@ -104,6 +117,11 @@ created(){
   background-color: rgb(92, 76, 146);
   float:left;
 } */
+.item-info span{
+  border-right:1px solid #909090;
+  margin-left:10px;
+  padding-right:5px;
+}
 .item-img{
   margin-top: 0.5rem;
   margin-right: 0.5rem;
