@@ -4,7 +4,10 @@
         <ul class="bars">
         <li><img src="~/assets/images/宠物.svg" class="logo" /></li>
         <li class="logo_font">校园趣闻</li>
-        <nuxt-link v-for="item in navs" :key="item.id" :to="item.link" tag="li" class="bar">{{item.name}}</nuxt-link>
+        <!-- <nuxt-link v-for="item in navs" :key="item.id" :to="item.link" tag="li" class="bar">{{item.name}}</nuxt-link> -->
+        <li>首页</li>
+        <li v-for="(p,index) in navs" :key="index">{{ p.Categoryname }}</li>
+        <li>更多</li>
         <li> <div class="container"><input class="search"/><button  class="searchbutton"><img src="~/assets/images/搜索框 .svg"  class="searchimg"/></button></div></li>
         <li>
           <el-dropdown size="large" split-button type="primary" v-if="role=='新闻发布者'">
@@ -95,43 +98,53 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
 name: 'TopBar',
 data() {
   return {
       role:this.$store.state.role,
        navs: [
-      {
-        name: '首页',
-        link: '/'
-      },
-      {
-        name: '时政',
-        link: '/'
-      },
-      {
-        name: '体育',
-        link: '/sports'
-      },
-      {
-        name: '娱乐',
-        link: '/game'
-      }, 
-      {
-        name: '学习',
-        link: '/study'
-      },
-      {
-        name: '生活',
-        link: '/live'
-      },
-      {
-        name: '更多',
-        link: '/catch_category'
-      }
+      // {
+      //   name: '首页',
+      //   link: '/'
+      // },
+      // {
+      //   name: '时政',
+      //   link: '/'
+      // },
+      // {
+      //   name: '体育',
+      //   link: '/sports'
+      // },
+      // {
+      //   name: '娱乐',
+      //   link: '/game'
+      // }, 
+      // {
+      //   name: '学习',
+      //   link: '/study'
+      // },
+      // {
+      //   name: '生活',
+      //   link: '/live'
+      // },
+      // {
+      //   name: '更多',
+      //   link: '/catch_category'
+      // }
     ],
   }
 },
+created(){
+  this.$axios({
+        method:'get',
+        url:'http://localhost:1337/categories',
+      }).then((result)=>{
+        console.log(result);
+        this.navs=result.data
+      })
+}
 }
 </script >
 

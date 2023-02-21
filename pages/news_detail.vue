@@ -262,7 +262,7 @@ import Cookie from 'js-cookie';
 .B{
   padding-bottom: 0.5rem;
   padding-top: 0.5rem;
-  margin-right: 44rem;
+  margin-right: 43.6rem;
   margin-bottom: 2rem;
   float: right;
   /* background-color: rgb(47, 78, 78); */

@@ -5,6 +5,7 @@
         <hr/>
     </div>
     <div class="item"  v-for="(news,index) in newslist" :key="index" v-on:click="todeatil(news.id)">
+          
           <img :src="'http://localhost:1337'+news.image[0].url" class="item-img">
         <div class="item-info"> 
           <span>{{news.auhors[0].name}}</span>
@@ -12,7 +13,7 @@
           <span>{{news.categories[0].Categoryname}}</span>
         </div>
         <div class="item-text"><h4>{{ news.Newsname}}</h4></div>
-
+        <hr style="width:100%;">
       </div>
     </div>
   </template>
@@ -106,8 +107,8 @@ created(){
   display: inline-block; 
   margin-bottom: 2rem;
   width: 54vw;
-  background-color: rgb(255, 255, 255);
-  box-shadow: 0 0.1rem 0.5rem  rgb(222, 218, 218);
+  /* background-color: rgb(255, 255, 255); */
+  /* box-shadow: 0 0.1rem 0.5rem  rgb(222, 218, 218); */
 }
 .item-text{
   margin-bottom: 0.5rem;

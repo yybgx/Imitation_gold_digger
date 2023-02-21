@@ -101,41 +101,41 @@ export default {
   padding: 0;
 }
 #container {
-  width: 240px;
+  width: 14vw;
   position:absolute;
-  right:170px;  
-  top:125px;
+  right:8.8vw;  
+  top:13.5vh;
 }
 #container > img {
-  width: 240px;
-  height: 200px;
+  width: 14vw;
+  height: 22vh;
   margin-bottom: 10px;
 }
 #container .onload {
-  width: 240px;
-  height: 74px;
+  width: 14vw;
+  height: 9vh;
   /* border:1px solid red; */
   background-color: rgb(255, 255, 255);
   box-shadow: 0 0.1rem 0.5rem  rgb(222, 218, 218);
 }
 
 #container .onload img {
-  width: 50px;
-  height: 50px;
+  width: 3vw;
+  height: 6vh;
   float: left;
-  margin: 10px 0px 0px 10px;
+  margin: 1vh 0vw 0vh 1vw;
 }
 #container .onload p {
-  line-height: 22px;
-  font-size: 12px;
+  line-height: 3vh;
+  font-size: 0.8rem;
   display: block;
   float: left;
-  margin-left: 20px;
+  margin-left: 1vw;
 }
 #container .onload p:nth-child(2) {
-  font-size: 14px;
-  line-height: 30px;
-  margin-top: 10px;
+  font-size: 0.9rem;
+  line-height: 2vh;
+  margin-top: 2vh;
   /* color:red */
 }
 #container .onload p:nth-child(3) {
@@ -143,30 +143,30 @@ export default {
 }
 
 #container .writer {
-  width: 240px;
-  margin-top: 20px;
+  width: 14vw;
+  margin-top: 3vh;
   background-color: rgb(255, 255, 255);
   box-shadow: 0 0.1rem 0.5rem  rgb(222, 218, 218);
 }
 #container .writer > span {
-  width: 240px;
-  font-size: 14px;
-  line-height: 20px;
+  width: 14vw;
+  font-size: 0.9rem;
+  line-height: 3vh;
   color: #333;
   border-bottom: 1px solid #86909c;
   display: block;
-  margin-bottom: 5px;
-  margin-left: 5px;
+  margin-bottom: 0.5vw;
+  margin-left: 0.8vh;
 }
 #container .writer ul {
-  width: 240px;
+  width: 14vw;
   background-color: rgb(255, 255, 255);
   box-shadow: 0 0.1rem 0.5rem  rgb(222, 218, 218);
 }
 #container .writer ul li {
-  width: 240px;
-  height: 60px;
-  padding: 15px 0px 10px 0px;
+  width: 14vw;
+  height: 7.5vh;
+  padding: 2vh 0px 1vh 0px;
   list-style-type: none;
 }
 #container .writer ul li:hover {
@@ -174,20 +174,20 @@ export default {
   cursor: pointer;
 }
 #container .writer ul li img {
-  width: 45.6px;
-  height: 45.6px;
-  border-radius: 50px;
-  margin-left: 10px;
+  width: 3vw;
+  height: 6vh;
+  border-radius: 50%;
+  margin-left: 0.8vw;
   float:left;
 }
 #container .writer ul li span {
   float: left;
   display: block;
-  margin-left:10px; 
+  margin-left:0.7vw; 
 }
 #container .writer ul li span > img {
-  width: 35px;
-  height: 16px;
+  width: 2vw;
+  height: 2vh;
  
 }
 #container .writer ul li span >i{
@@ -195,14 +195,14 @@ export default {
 }
 #container .writer ul li span > p {
   color: #909090;
-  font-size: 12px;
+  font-size: 1rem;
   clear:both
 }
 #container .writer > p {
   text-align: center;
   color: #007fff;
   cursor: pointer;
-  margin-top:10px;
-  height:30px;  
+  margin-top:1vh;
+  height:3.4vh;  
 }
 </style>
