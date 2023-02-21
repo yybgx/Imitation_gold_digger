@@ -6,8 +6,19 @@
         <li class="logo_font">校园趣闻</li>
         <!-- <nuxt-link v-for="item in navs" :key="item.id" :to="item.link" tag="li" class="bar">{{item.name}}</nuxt-link> -->
         <li>首页</li>
-        <li v-for="(p,index) in navs" :key="index">{{ p.Categoryname }}</li>
-        <li>更多</li>
+        <li v-for="(p,index) in navs" :key="index" v-if="index<5">{{ p.Categoryname }}</li>
+        <li>
+          <el-dropdown class="avatar-container">
+           <div>
+            <img src="~/assets/images/更多.svg" class="more"/>
+           </div>
+           <el-dropdown-menu slot="dropdown" >
+            <el-dropdown-item v-for="(p,index) in navs" :key="index">
+               {{ p.Categoryname}}
+             </el-dropdown-item>
+           </el-dropdown-menu>
+          </el-dropdown>
+        </li>
         <li> <div class="container"><input class="search"/><button  class="searchbutton"><img src="~/assets/images/搜索框 .svg"  class="searchimg"/></button></div></li>
         <li>
           <el-dropdown size="large" split-button type="primary" v-if="role=='新闻发布者'">
@@ -103,6 +114,7 @@ export default {
 name: 'TopBar',
 data() {
   return {
+     morebar:[],
       role:this.$store.state.role,
        navs: [
       // {
@@ -142,7 +154,7 @@ created(){
         url:'http://localhost:1337/categories',
       }).then((result)=>{
         console.log(result);
-        this.navs=result.data
+        this.navs=result.data;
       })
 }
 }
@@ -158,6 +170,11 @@ height: 3rem;
   font-weight: bolder;
   font-family:"黑体";
   margin: auto 0;
+}
+.more{
+  margin-top: 0.2rem;
+  height: 1.5rem;
+  width: 1.5rem;
 }
 .logo{
   width: 3rem;
