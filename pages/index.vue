@@ -1,21 +1,14 @@
 <template>
   <div>
     <Bar />
-    <newslist />
-    <div>
-      <!-- <nuxt-link :to="{name: 'about', params: {id: 3306 }}">params传参</nuxt-link> -->
-    </div>
-    <rightList />
+     <newslist />
+      <!-- <rightbar/> -->
   </div>
  
 </template>
 <script >
-import rightList from '../components/rightLIst'
 export default {
   name: 'IndexPage',
-  components:{
-    rightList
-  },
   methods:{
        increment(step) {
           this.$store.commit('increment', step);

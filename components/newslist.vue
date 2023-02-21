@@ -39,7 +39,7 @@ import Cookie from 'js-cookie';
         news_id:'阿苟',
         title:'22年连续跳槽3家',
         category_id:'前端 面试',
-        update_time:'5月前'
+        update_time:'5月前sdsd'
       }
     ],
     categorylist:[1]
