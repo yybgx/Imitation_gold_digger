@@ -1,12 +1,12 @@
 <template>
     <div>
-      <div class="SideRight">
+      <!-- <div class="SideRight">
          <div class="side" v-if="role=='新闻发布者'"> 
           <el-button type="primary" @click="editnews(newsdetail.news_id)">编辑新闻</el-button>
         </div>
          <div class="side" v-if="role=='新闻发布者'"> <el-button type="primary" @click="pushnews">确认发布</el-button></div>
          <div class="side" v-if="role=='新闻发布者'"> <el-button type="danger" icon="el-icon-delete" circle v-on:click="deletenews"></el-button></div>
-       </div>
+       </div> -->
         <div class="sidebar">
          <div class="side"> 
           <img src="~/assets/images/点赞.svg" class="tubiao" @click="addlike" v-if="isture"/>
@@ -20,17 +20,24 @@
         </div>
         <div class="detail" v-if="state">
         <div class="mytitle" >
-           <h2>{{newsdetail.title}}</h2>  
-           <h6>
-            <p>累计点赞数：{{newsdetail.likes_cnt}}</p>
-            <span v-if="newsdetail.author_name!=null">作者:{{newsdetail.author_name}}</span>
-            <span v-if="newsdetail.author_name==null">作者:匿名</span>
-            <span>新闻类别:{{newsdetail.category_name}}</span>
-            <span>更新时间:{{newsdetail.update_time}}</span>
+           <h2>{{newsdetail.Newsname}}</h2>  
+            <div class="A"><img :src="avatar"></div>
+            <div class="B">
+            <h6>
+            <span>作者:{{this.authorname}}</span>
+            <span> <img
+            src="https://lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/img/lv-5.d08789d.png"
+            alt="" style="width: 35px; height: 16px;"/></span>
+            <!-- <span>更新时间:{{newsdetail.update_time}}</span> -->
            </h6>
+           <h6>
+            <span>创建时间:{{newsdetail.updatetime}}</span>
+           </h6>
+            </div>
          </div>
          <div class="mydetail">
-          {{ newsdetail.content}}
+          <hr style="width: 100%;">
+          <h5>{{ newsdetail.detail}}</h5>
          </div>
         </div>
         <!-- <div class="pass" v-if="role=='管理员'">
@@ -49,18 +56,15 @@ import Cookie from 'js-cookie';
  export default{
    data(){
     return {
+      avatar:'',
+      authorname:'',
+       news_id:'',
         state: true,
         isture:true,
         isadd:false,
         role:'',
         newsdetail: [
-      {
-      //  title:'标题',
-      //  author_name:'作者',
-      //  category_name:'类别',
-      //  update_time:'时间',
-      //  content:''
-      }
+      
     ],
     comments:[{
 
@@ -69,16 +73,29 @@ import Cookie from 'js-cookie';
  },
  created(){
     this.role=this.$store.state.role;
-    console.log("新闻Id"+this.$store.state.news_id);
-      console.log("身份"+this.$store.state.role);
-      console.log("token="+this.$store.state.token);
-      if(this.$store.state.role=="普通用户"){
-        this.getdetail();
-      }else if(this.$store.state.role=="新闻发布者"){
-        this.pdetail();
-      }else{
-        this.Adetail()
-      }
+    // console.log("新闻Id"+this.$store.state.news_id);
+    //   console.log("身份"+this.$store.state.role);
+    //   console.log("token="+this.$store.state.token);
+    //   if(this.$store.state.role=="普通用户"){
+    //     this.getdetail();
+    //   }else if(this.$store.state.role=="新闻发布者"){
+    //     this.pdetail();
+    //   }else{
+    //     this.Adetail()
+    //   }
+    this.news_id=this.$store.state.news_id;
+    this.$axios({
+        method:'get',
+        url:'http://localhost:1337/newslists/'+this.news_id,
+      }).then((result)=>{
+        console.log(result);
+        this.newsdetail=result.data;
+        this.authorname=result.data.auhors[0].name;
+        this.avatar='http://localhost:1337'+result.data.auhors[0].avatar[0].url
+        // this.imageurl='http://localhost:1337'+result.data[0].image[0].url;
+        console.log(this.newsdetail);
+      })
+    
  },
  methods: {
     changeValue (e) {
@@ -230,6 +247,30 @@ import Cookie from 'js-cookie';
 </script>
 
 <style>
+.A{
+  /* background-color: aqua; */
+  width: 2rem;
+  height: 2rem;
+  float: left;
+  margin-bottom: 2rem;
+}
+.A img{
+  margin-left: 1rem;
+  width: 50px;
+  height: 50px;
+}
+.B{
+  padding-bottom: 0.5rem;
+  padding-top: 0.5rem;
+  margin-right: 44rem;
+  margin-bottom: 2rem;
+  float: right;
+  /* background-color: rgb(47, 78, 78); */
+  display: inline;
+}
+.B h6{
+  margin: 0;
+}
 .SideRight{
   text-align: center;
     margin-top: 10rem;
@@ -295,19 +336,27 @@ import Cookie from 'js-cookie';
     box-shadow: 0 0.1rem 1rem  rgb(222, 218, 218);
 }
 .mytitle{
+  display: inline;
     /* text-align: center; */
     margin-right: 1rem;
     margin-left: 1rem;
     margin-top: 0.5rem;
+    padding-left: 0.5rem;
+}
+.mytitle h2{
+  margin-left: 1rem;
 }
 .mydetail{
   padding-left: 0.2rem;
-  padding-top: 0.5rem;
+  padding-top: 0.2rem;
   padding-bottom: 0.5rem;
     margin-right: 1rem;
     margin-left: 0.8rem;
-    margin-top: 0.5rem;
+    margin-top: 1rem;
     background-color: rgb(255, 255, 255);    
-    box-shadow: 0 0.1rem 1rem  rgb(222, 218, 218);
+    /* box-shadow: 0 0.1rem 1rem  rgb(222, 218, 218); */
+}
+.mydetail h5{
+  margin-left: 1rem;
 }
 </style>

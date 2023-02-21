@@ -4,7 +4,7 @@
         <span>最新</span>
         <hr/>
     </div>
-    <div class="item"  v-for="(news,index) in newslist" :key="index" v-on:click="todeatil(news.news_id)">
+    <div class="item"  v-for="(news,index) in newslist" :key="index" v-on:click="todeatil(news.id)">
           <img :src="'http://localhost:1337'+news.image[0].url" class="item-img">
         <div class="item-info"> 
           <span>{{news.auhors[0].name}}</span>
@@ -62,6 +62,7 @@ created(){
   methods:{
     todeatil(n){
       Cookie.set('news_id',n);
+      console.log(this.$store.state.news_id)
       this.$router.push('news_detail')
     },
     load(){
