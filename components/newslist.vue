@@ -5,13 +5,13 @@
         <hr/>
     </div>
     <div class="item"  v-for="(news,index) in newslist" :key="index" v-on:click="todeatil(news.news_id)">
-          <!-- <img src="~/assets/images/头像 男孩.svg" class="item-img"> -->
+          <img :src="'http://localhost:1337'+news.image[0].url" class="item-img">
         <div class="item-info"> 
-          <span>{{news.news_id}}</span>
-          <span>{{news.update_time}}</span>
-          <span>{{news.category_id}}</span>
+          <span>{{news.auhors[0].name}}</span>
+          <span>{{news.updatetime}}</span>
+          <span>{{news.categories[0].Categoryname}}</span>
         </div>
-        <div class="item-text"><h4>{{ news.title}}</h4></div>
+        <div class="item-text"><h4>{{ news.Newsname}}</h4></div>
 
       </div>
     </div>
@@ -22,31 +22,42 @@ import Cookie from 'js-cookie';
   export default {
   data() {
   return {
+       imageurl:'',
        newslist: [
-      {
-        news_id:'lemonwater',
-        title:'5年前端,我学会接受自己的平凡',
-        category_id:'前端',
-        update_time:'5月前'
-      },
-      {
-        news_id:'TF男孩',
-        title:'为什么大家都看重学历?',
-        category_id:'程序员 午夜话题',
-        update_time:'2月前'
-      },
-      {
-        news_id:'阿苟',
-        title:'22年连续跳槽3家',
-        category_id:'前端 面试',
-        update_time:'5月前sdsd'
-      }
+      // {
+      //   news_id:'lemonwater',
+      //   title:'5年前端,我学会接受自己的平凡',
+      //   category_id:'前端',
+      //   update_time:'5月前'
+      // },
+      // {
+      //   news_id:'TF男孩',
+      //   title:'为什么大家都看重学历?',
+      //   category_id:'程序员 午夜话题',
+      //   update_time:'2月前'
+      // },
+      // {
+      //   news_id:'阿苟',
+      //   title:'22年连续跳槽3家',
+      //   category_id:'前端 面试',
+      //   update_time:'5月前sdsd'
+      // }
     ],
     categorylist:[1]
   }
 },
 created(){
-  this.load()
+  // this.load()
+      this.$axios({
+        method:'get',
+        url:'http://localhost:1337/newslists/',
+      }).then((result)=>{
+        console.log(result);
+        this.newslist=result.data;
+        // this.imageurl='http://localhost:1337'+result.data[0].image[0].url;
+        console.log('http://localhost:1337'+result.data[0].image[0].url);
+        console.log(result.data[0].auhors[0].name);
+      })
 },
   methods:{
     todeatil(n){

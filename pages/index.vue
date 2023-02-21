@@ -1,13 +1,11 @@
 <template>
-  <div>
+  <div class="leftindex">
     <Bar />
     <newslist />
-    <div>
-      <!-- <nuxt-link :to="{name: 'about', params: {id: 3306 }}">params传参</nuxt-link> -->
+    <div class="rightindex">
+      <rightList />
     </div>
-    <rightList />
   </div>
- 
 </template>
 <script >
 import rightList from '../components/rightLIst'
@@ -28,5 +26,5 @@ export default {
 }
 </script>
 <style>  
-  
+
 </style>

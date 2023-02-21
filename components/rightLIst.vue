@@ -1,7 +1,7 @@
 <template>
   <div id="container">
     <img
-      src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/513e1d89a09b4a0ebab67c6a1dc94901~tplv-k3u1fbpfcp-no-mark:480:400:0:0.awebp?"
+      :src="imageurl"
       alt=""
     />
     <div class="onload">
@@ -17,16 +17,16 @@
       <ul>
         <li v-for="(p,index) in writerList" :key="index">
           <img
-            :src="p.imgUrl"
+            :src="'http://localhost:1337'+p.avatar[0].url"
             alt=""
           />
           <span>
-            <i>{{p.writer}}</i>
+            <i>{{p.name}}</i>
             <img
-              :src="p.level "
+              :src="level"
               alt=""
             />
-            <p>{{ p.profile }}</p>
+            <p>{{p.Introduce}}</p>
           </span>
         </li>
       </ul>
@@ -40,27 +40,57 @@ export default {
     name:"rightList",
     data(){
         return{
+          level:"https://lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/img/lv-5.d08789d.png",
+          imageurl:'',
             writerList:[
-                {
-                    imgUrl:"https://p3-passport.byteimg.com/img/user-avatar/f00ed7cb67569c31d1f314fda68d87b4~100x100.awebp",
-                    writer:"云牧",
-                    level:"https://lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/img/lv-5.d08789d.png",
-                    profile:"B站Up@云下牧羊人"
-                },
-                {
-                    imgUrl:"https://p3-passport.byteimg.com/img/user-avatar/61130727b6e6bf9ed813434aeaed8ac3~100x100.awebp",
-                    writer:"GUGGZ",
-                    level:"https://lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/img/lv-7.5da15b8.png",
-                    profile:"公众号:前端充电宝"
-                },
-                {
-                    imgUrl:"https://p3-passport.byteimg.com/img/user-avatar/2f795a3e8faa2fe3dacb94148b57425b~100x100.awebp",
-                    writer:"程序员老鱼",
-                    level:"https://lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/img/lv-4.a78c420.png",
-                    profile:"前端工程师,自媒体人"
-                }
+                // {
+                //     imgUrl:"https://p3-passport.byteimg.com/img/user-avatar/f00ed7cb67569c31d1f314fda68d87b4~100x100.awebp",
+                //     writer:"云牧",
+                //     level:"https://lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/img/lv-5.d08789d.png",
+                //     profile:"B站Up@云下牧羊人"
+                // },
+                // {
+                //     imgUrl:"https://p3-passport.byteimg.com/img/user-avatar/61130727b6e6bf9ed813434aeaed8ac3~100x100.awebp",
+                //     writer:"GUGGZ",
+                //     level:"https://lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/img/lv-7.5da15b8.png",
+                //     profile:"公众号:前端充电宝"
+                // },
+                // {
+                //     imgUrl:"https://p3-passport.byteimg.com/img/user-avatar/2f795a3e8faa2fe3dacb94148b57425b~100x100.awebp",
+                //     writer:"程序员老鱼",
+                //     level:"https://lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/img/lv-4.a78c420.png",
+                //     profile:"前端工程师,自媒体人"
+                // }
             ]
         }
+    },
+    created(){
+      this.$axios({
+        method:'get',
+        url:'http://localhost:1337/auhors',
+      }).then((result)=>{
+        console.log(result);
+        let author=result.data[0]
+        for(let i=1;i<result.data.length;i++){
+          if(result.data[i].ranking<=author.ranking)
+          {
+            this.writerList[i-1]=result.data[i];
+          }
+          else{
+            this.writerList[i-1]=author;
+            author=result.data[i];
+          }
+        }
+        console.log(this.writerList);
+      }),
+      this.$axios({
+        method:'get',
+        url:'http://localhost:1337/advertisements/1',
+      }).then((result)=>{
+        console.log(result);
+        this.imageurl='http://localhost:1337'+result.data.Image.url
+        console.log(this.imageurl)
+      })
     }
 };
 </script>
