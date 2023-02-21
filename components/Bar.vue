@@ -1,9 +1,7 @@
 <template>
     <div>
         <nav >
-          <ul >
-            <nuxt-link v-for="item in navs" :key="item.id" :to="item.link" tag="li" >{{item.name}}</nuxt-link>
-          </ul>
+          
         </nav>
     </div>
   </template>
@@ -67,7 +65,7 @@
     cursor: pointer;
     margin: auto 0;
   }
-  .bars li {
+  .bars li div{
   font-size:0
   }
   
