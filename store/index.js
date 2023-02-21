@@ -4,7 +4,8 @@ export const state = ()=>({
     userId:11,
     role:'',
     token:'',
-    category_id:'',
+    category:'首页',
+    category_id:0,
     news_id:'',
 })
 //完成数据的同步修改
@@ -25,6 +26,9 @@ export const mutations = {
    updatenews_id(state, payload) {
       state.news_id=payload;
    },
+   updatecategory(state, payload) {
+      state.category=payload;
+   },
 }
 
 
@@ -35,6 +39,7 @@ export const actions = {
       let role='';
       let userId='';
       let news_id='';
+      let category_id='';
       console.log("cookie——"+req.headers.cookie);
       //判断用户是否已登录
       if(req.headers.cookie){
@@ -44,10 +49,12 @@ export const actions = {
          userId=parser.userId;
          token=parser.token;
          news_id=parser.news_id;
+         category_id=parser.category_id;
       }
       commit('updateToken',token);
       commit('updateRole',role);
       commit('updateUserId',userId);
       commit('updatenews_id',news_id);
+      commit('updatecategory',category_id);
    }
 }

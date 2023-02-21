@@ -23,6 +23,7 @@ import Cookie from 'js-cookie';
   export default {
   data() {
   return {
+       category:'',
        imageurl:'',
        newslist: [
       // {
@@ -49,7 +50,10 @@ import Cookie from 'js-cookie';
 },
 created(){
   // this.load()
-      this.$axios({
+      console.log(this.$store.state.category_id+"22222")
+      this.category_id=this.$store.state.category_id;
+      if(this.category==0){
+        this.$axios({
         method:'get',
         url:'http://localhost:1337/newslists/',
       }).then((result)=>{
@@ -59,6 +63,19 @@ created(){
         console.log('http://localhost:1337'+result.data[0].image[0].url);
         console.log(result.data[0].auhors[0].name);
       })
+       Cookie.set('category','首页');
+      }else{
+        this.$axios({
+        method:'get',
+        url:'http://localhost:1337/categories/'+this.$store.state.category_id,
+      }).then((result)=>{
+        console.log(result);
+        this.newslist=result.data;
+        // this.imageurl='http://localhost:1337'+result.data[0].image[0].url;
+        console.log('http://localhost:1337'+result.data[0].image[0].url);
+        console.log(result.data[0].auhors[0].name);
+      })
+      }
 },
   methods:{
     todeatil(n){

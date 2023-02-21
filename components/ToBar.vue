@@ -4,9 +4,9 @@
         <ul class="bars">
         <li><img src="~/assets/images/宠物.svg" class="logo" /></li>
         <li class="logo_font">校园趣闻</li>
-        <!-- <nuxt-link v-for="item in navs" :key="item.id" :to="item.link" tag="li" class="bar">{{item.name}}</nuxt-link> -->
-        <li>首页</li>
-        <li v-for="(p,index) in navs" :key="index" v-if="index<5">{{ p.Categoryname }}</li>
+        <nuxt-link to="/" tag="li" class="bar">首页</nuxt-link>
+        <!-- <li>首页</li> -->
+        <li v-for="(p,index) in navs" :key="index" v-if="index<5" @click="goshouye(p.id)"><span class="bartext">{{ p.Categoryname }}</span></li>
         <li>
           <el-dropdown class="avatar-container">
            <div>
@@ -21,7 +21,7 @@
         </li>
         <li> <div class="container"><input class="search"/><button  class="searchbutton"><img src="~/assets/images/搜索框 .svg"  class="searchimg"/></button></div></li>
         <li>
-          <el-dropdown size="large" split-button type="primary" v-if="role=='新闻发布者'">
+          <el-dropdown size="large" split-button type="primary">
                                创作者中心
             <template #dropdown>
              <el-dropdown-menu>
@@ -110,6 +110,7 @@
 
 <script>
 import axios from 'axios';
+import Cookie from 'js-cookie';
 export default {
 name: 'TopBar',
 data() {
@@ -156,11 +157,21 @@ created(){
         console.log(result);
         this.navs=result.data;
       })
+},
+methods:{
+  goshouye(n){
+    // this.$store.commit('updatecategory_id',n);
+    Cookie.set('category_id',n);
+    this.$router.push('/live')
+  }
 }
 }
 </script >
 
 <style >
+.bartext :hover{
+      border-bottom: 1px solid #6ca5da;
+}
 .tobarnav{
 height: 3rem;
 }
