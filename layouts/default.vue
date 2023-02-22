@@ -7,10 +7,21 @@
     </div>
   </template>
   <script>
-  export default {
+  export default{
+    mounted(){
+        if(this.$store.state.role=='100')
+        document.body.style.backgroundColor='black'
+        else if(this.$store.state.role=='0')
+        document.body.style.backgroundColor='grey'
+        else document.body.style.backgroundColor='white'
+    },
   }
+
 </script>
   <style>
+  div{
+   background-color: rgba(0, 0, 0, 0);
+  }
   header{
     margin: 0;
     position: relative;

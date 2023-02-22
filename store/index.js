@@ -29,6 +29,12 @@ export const mutations = {
    updatecategory(state, payload) {
       state.category=payload;
    },
+   setTheme(state, theme) {
+      if (state.themes.includes(theme)) {
+        state.theme = theme
+        Cookies.set('theme', theme)
+      }
+    },
 }
 
 

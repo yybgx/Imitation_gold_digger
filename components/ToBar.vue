@@ -49,6 +49,19 @@
            </template>
            </el-dropdown>
         </li>
+        <li>
+          <el-switch
+           v-model="value"
+           @change="change"
+           inactive-value="0"
+           active-value="100"
+           active-text="夜晚模式"
+           inactive-text="护眼模式">
+         </el-switch>
+        </li>
+        <li><img v-if="isNight" src="~/assets/images/太阳暗.svg"  class="tubiao" @click="changet(1)"/>
+          <img v-if="isDay" src="~/assets/images/太阳.svg"  class="tubiao"/>
+        </li>
         <li><img src="~/assets/images/会员.svg"  class="tubiao"/></li>
         <li>
           <el-dropdown class="avatar-container">
@@ -115,6 +128,9 @@ export default {
 name: 'TopBar',
 data() {
   return {
+    isDay:false,
+     value:'',
+     isNight:true,
      morebar:[],
       role:this.$store.state.role,
        navs: [
@@ -159,6 +175,17 @@ created(){
       })
 },
 methods:{
+  changet(n){
+    this.isDay=true;
+    this.isNight=false;
+    this.value=n;
+    console.log("换肤"+this.value)
+    Cookie.set('role',this.value);
+  },
+  change(){
+    console.log("换肤"+this.value)
+    Cookie.set('role',this.value);
+  },
   goshouye(n){
     // this.$store.commit('updatecategory_id',n);
     Cookie.set('category_id',n);
