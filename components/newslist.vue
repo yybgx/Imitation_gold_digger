@@ -2,18 +2,24 @@
     <div class="box-card">
     <div class="head">
         <span>最新</span>
-        <hr/>
+        <span>|</span>
+        <span>最热</span>
+        <span>|</span>
+        <span>热榜</span>
     </div>
     <div class="item"  v-for="(news,index) in newslist" :key="index" v-on:click="todeatil(news.id)">
-          
-          <img :src="'http://localhost:1337'+news.image[0].url" class="item-img">
-        <div class="item-info"> 
+      <hr style="width:100%;">
+      <div  class="gu">
+        <span class="guangao" v-if="news.categories[0].Categoryname=='广告'">广告</span>
+        <img :src="'http://localhost:1337'+news.image[0].url" class="item-img">
+      </div>
+      <div class="item-info"> 
           <span>{{news.auhors[0].name}}</span>
           <span>{{news.updatetime}}</span>
           <span>{{news.categories[0].Categoryname}}</span>
-        </div>
         <div class="item-text"><h4>{{ news.Newsname}}</h4></div>
-        <hr style="width:100%;">
+        </div>
+
       </div>
     </div>
   </template>
@@ -25,26 +31,7 @@ import Cookie from 'js-cookie';
   return {
        category:'',
        imageurl:'',
-       newslist: [
-      // {
-      //   news_id:'lemonwater',
-      //   title:'5年前端,我学会接受自己的平凡',
-      //   category_id:'前端',
-      //   update_time:'5月前'
-      // },
-      // {
-      //   news_id:'TF男孩',
-      //   title:'为什么大家都看重学历?',
-      //   category_id:'程序员 午夜话题',
-      //   update_time:'2月前'
-      // },
-      // {
-      //   news_id:'阿苟',
-      //   title:'22年连续跳槽3家',
-      //   category_id:'前端 面试',
-      //   update_time:'5月前sdsd'
-      // }
-    ],
+       newslist: [],
     categorylist:[1]
   }
 },
@@ -99,6 +86,22 @@ created(){
   </script >
   
   <style >
+  .gu{
+    float: right;
+    width: 8rem;
+  }
+  .guangao{
+    margin-right: 0.8rem;
+    float: right;
+    padding-right: 0.5rem;
+    padding-top: 0.5rem;
+    padding-left: 0.5rem;
+    text-align: center;
+    width: 2rem;
+    height: 1.5rem;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 0 0.2rem  rgb(123, 125, 126);
+  }
   .head{
     width: 100%;
     height: 5vh;
@@ -113,7 +116,7 @@ created(){
   .box-card {
     padding: 0;
     margin: 0;
-    height: 100vh;
+    height: 100%;
     width: 55vw;
     background-color: rgb(255, 255, 255);
     margin-left: 14vw;
@@ -153,9 +156,10 @@ created(){
   padding-right:5px;
 }
 .item-img{
-  margin-top: 0.5rem;
-  margin-right: 0.5rem;
+  margin-top: 0.2rem;
+  margin-right: 0rem;
   float: right;
-  width: 5rem;
+  width: 8rem;
+  height: 6rem;
 }
 </style>

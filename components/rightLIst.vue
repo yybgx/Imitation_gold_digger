@@ -15,7 +15,7 @@
     <div class="writer">
       <span>🎖️作者榜</span>
       <ul>
-        <li v-for="(p,index) in writerList" :key="index">
+        <li v-for="(p,index) in writerList" :key="index" v-if="index<3">
           <img
             :src="'http://localhost:1337'+p.avatar[0].url"
             alt=""
