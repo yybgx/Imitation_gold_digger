@@ -20,7 +20,7 @@
           </el-dropdown>
         </li>
         <li> <div class="container"><input class="search"/><button  class="searchbutton"><img src="~/assets/images/搜索框 .svg"  class="searchimg"/></button></div></li>
-        <li>
+        <!-- <li>
           <el-dropdown size="large" split-button type="primary">
                                创作者中心
             <template #dropdown>
@@ -48,7 +48,7 @@
              </el-dropdown-menu>
            </template>
            </el-dropdown>
-        </li>
+        </li> -->
         <li><img src="~/assets/images/会员.svg"  class="tubiao"/></li>
         <li>
           <el-dropdown class="avatar-container">

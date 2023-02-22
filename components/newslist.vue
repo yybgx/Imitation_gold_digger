@@ -87,6 +87,7 @@ created(){
   
   <style >
   .gu{
+    display: inline;
     float: right;
     width: 8rem;
   }
@@ -123,6 +124,7 @@ created(){
     box-shadow: 0 0.1rem 1rem  rgb(222, 218, 218);
   }
   .item{
+    display: inline;
   margin-left: 0.5rem;
   display: inline-block; 
   margin-bottom: 2rem;
