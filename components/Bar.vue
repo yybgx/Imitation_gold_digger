@@ -1,72 +1,47 @@
 <template>
-    <div>
-        <nav >
-          
-        </nav>
+    <div class="Bar">
+          <ul class="ba">
+            <li v-for="(p,index) in navs" :key="index" >
+              <span class="bartext">{{ p.tapname}}</span>
+            </li>
+          </ul>
     </div>
   </template>
   <script >
   export default {
-  name: 'TopBar',
   data() {
     return {
-         navs: [
-        {
-          name: '首页',
-          link: '/'
-        },
-        {
-          name: '沸点',
-          link: '/hot'
-        },
-        {
-          name: '课程',
-          link: '/course'
-        },
-        {
-          name: '直播',
-          link: '/live'
-        }, 
-        {
-          name: '直播',
-          link: '/live'
-        },
-        {
-          name: '直播',
-          link: '/live'
-        },
-        {
-          name: '直播',
-          link: '/live'
-        }
-      ],
+         navs: [],
     }
   },
-
+  created() {
+    this.$axios({
+      method: "get",
+      url: "http://localhost:1337/taps/",
+    }).then((result) => {
+      console.log(result);
+      this.navs= result.data;
+    });
+  },
   }
   </script >
   
   <style >
-  nav{
-  height: 3rem;
-  }
-  .bars{
-  margin:0;padding:0;
-  margin-top: 0rem;
-  margin-top: auto;
-  display: flex;
+ .Bar{
+  text-align: center;
+ }
+  .ba{
+    margin-left: 13rem;
+    margin-top: 0rem;
+    margin-top: auto;
+    display: flex;
+  text-align: center;
   list-style:none
   }
-  .bar :hover{
-  color: #71777c;
-  }
-  .bars li {
+  .ba li {
     padding: 0 1vw;
     cursor: pointer;
     margin: auto 0;
-  }
-  .bars li div{
-  font-size:0
   }
   
   </style>

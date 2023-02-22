@@ -104,7 +104,7 @@ export default {
   width: 14vw;
   position:absolute;
   right:11.8vw;  
-  top:14.5vh;
+  top:18.5vh;
 }
 #container > img {
   width: 14vw;
